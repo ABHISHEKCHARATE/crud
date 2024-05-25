@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Dashboard!</h1>
+        <a href="{% url 'admin:login' %}?next={% url 'admin:index' %}">ADMIN Login</a>
+    </header>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Login</h1>
+        
+        {{ form.as_p }}
+        
+        <button type="submit">Login</button>
+        <a href="{% url 'signup' %}">Don't have an account? Create one</a>
+    </form>
+</body>
+</html>

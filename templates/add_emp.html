@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button[type="reset"] {
+            background-color: #dc3545;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+        {% csrf_token %}
+        <h2>Add Employee</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" name="mobile" required>
+
+        <label for="salary">Salary:</label>
+        <input type="text" id="salary" name="salary" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="job_role">Job Role:</label>
+        <input type="text" id="job_role" name="job_role" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

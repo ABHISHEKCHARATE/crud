@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylee.css' %}">
+</head>
+<body>
+    <div class="nav">
+        <div class="brand">Dashboard</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    
+    <div class="menu-container">
+        <!-- Ensure onclick attribute is correctly calling toggleSidebar() function -->
+        <button class="menu-btn" onclick="toggleSidebar()">&#9776; Menu</button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <a href="{% url 'Employee' %}">Employee</a>
+        <a href="{% url 'Managerr' %}">Manager</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <script>
+       
+       function toggleSidebar() {
+                var sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('active');
+                
+                // Check if sidebar is now active
+                var isActive = sidebar.classList.contains('active');
+                
+                // If sidebar is active, add event listener to close it when clicking outside
+                if (isActive) {
+                    document.addEventListener('click', closeSidebarOutsideClick);
+                } else {
+                    document.removeEventListener('click', closeSidebarOutsideClick);
+                }
+            }
+
+            function closeSidebarOutsideClick(event) {
+                var sidebar = document.getElementById('sidebar');
+                var menuBtn = document.querySelector('.menu-btn');
+                
+                // Check if the click event occurred outside the sidebar and menu button
+                if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                    document.removeEventListener('click', closeSidebarOutsideClick);
+                }
+            }
+    </script>
+</body>
+</html>

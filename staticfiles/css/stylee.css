@@ -1,0 +1,127 @@
+body {
+    background-color: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.nav .brand {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+.menu-btn {
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.menu-btn:hover {
+    background-color: #0056b3;
+}
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: -250px;
+    transition: left 0.3s;
+    padding-top: 60px;
+}
+.sidebar a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+.sidebar a:hover {
+    background-color: #007BFF;
+    color: #ffffff;
+}
+.dropdown {
+    position: relative;
+}
+.dropdown-btn {
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 200px;
+    z-index: 1;
+}
+.dropdown-content li a {
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content li a:hover {
+    background-color: #007BFF;
+    color: #ffffff;
+}
+.dropdown-content.show {
+    display: block;
+}
+.container {
+    margin-top: 60px; /* Adjusted to allow space for the navbar */
+    padding: 20px;
+    text-align: center;
+}
+.container h1 {
+    font-size: 36px;
+    color: #333;
+}
+.container p {
+    font-size: 18px;
+    color: #555;
+}
+.active {
+    left: 0 !important;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+.search-bar input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+.search-bar button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.search-bar button:hover {
+    background-color: #0056b3;
+}

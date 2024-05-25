@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Delete Manager</h2>
+    <p>Are you sure you want to delete the following manager?</p>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ manager.name }}</h5>
+            <p class="card-text">
+                <strong>Mobile:</strong> {{ manager.mobile }}<br>
+                <strong>Salary:</strong> {{ manager.salary }}<br>
+                <strong>Section:</strong> {{ manager.section }}<br>
+                <strong>Project Name:</strong> {{ manager.project_name }}<br>
+                <strong>Department:</strong> {{ manager.department }}
+            </p>
+            <form method="post" action="{% url 'delete_man' manager.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="{% url 'Managerr' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

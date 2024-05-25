@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Employee.css' %}">
+</head>
+<body>
+    <div class="nav">
+        <div class="brand">Dashboard</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    
+    <div class="menu-container">
+        <!-- Ensure onclick attribute is correctly calling toggleSidebar() function -->
+        <button class="menu-btn" onclick="toggleSidebar()">&#9776; Menu</button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <a href="{% url 'Employee' %}">Employee</a>
+        <a href="{% url 'Managerr' %}">Manager</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <div id="EmployeeInformation" class="container">
+        <h3>Employee Information</h3>
+        <a href="{% url 'add_emp' %}" class="btn">Add Employee</a>
+        <a href="?download_excel=1" class="btn">Download Excel</a>
+    </div>
+
+    <div class="content">
+        <main class="p-6">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>S.No</th>                
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Salary</th>
+                        <th>Location</th>
+                        <th>Job Role</th>
+                        <th>Actions</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.mobile }}</td>
+                            <td>{{ employee.salary }}</td>
+                            <td>{{ employee.location }}</td>
+                            <td>{{ employee.job_role }}</td>
+                            <td>
+                                <a href="{% url 'update_emp' employee.pk %}">Update</a> / 
+                                <a href="{% url 'delete_emp' employee.pk %}" onclick="return confirm('Are you sure you want to delete this employee?')">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if employees.has_other_pages %}
+                <div id="paginationButtons">
+                    {% if employees.has_previous %}
+                        <a href="?page={{ employees.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    {% if employees.has_next %}
+                        <a href="?page={{ employees.next_page_number }}">Next</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </main>
+    </div>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+            
+            // Check if sidebar is now active
+            var isActive = sidebar.classList.contains('active');
+            
+            // If sidebar is active, add event listener to close it when clicking outside
+            if (isActive) {
+                document.addEventListener('click', closeSidebarOutsideClick);
+            } else {
+                document.removeEventListener('click', closeSidebarOutsideClick);
+            }
+        }
+
+        function closeSidebarOutsideClick(event) {
+            var sidebar = document.getElementById('sidebar');
+            var menuBtn = document.querySelector('.menu-btn');
+            
+            // Check if the click event occurred outside the sidebar and menu button
+            if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+                sidebar.classList.remove('active');
+                document.removeEventListener('click', closeSidebarOutsideClick);
+            }
+        }
+    </script>
+</body>
+</html>

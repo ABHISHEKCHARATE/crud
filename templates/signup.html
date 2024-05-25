@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Signup Here</h3>
+        
+        {{ form.as_p }}
+        
+        <button type="submit">Signup</button>
+        <a href="{% url 'login' %}">Already have an account?</a>
+        
+        {% if form.errors %}
+            <ul class="error-list">
+                {% for field, errors in form.errors.items %}
+                    <li>{{ field }}: {{ errors|escape }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </form>
+</body>
+</html>
